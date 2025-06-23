@@ -388,10 +388,10 @@
                     if (!uuid) {
                         throw new Error('UUID is required');
                     }
-            
+
                     const response = await fetch(`/specifications/${uuid}.md`);
                     // Print response status for debugging
-                    console.log(`Fetching ${uuid}.md: ${response.status}`);
+                    console.log(`Fetching /specifications/${uuid}.md: ${response.status}`);
 
 
                     if (!response.ok) throw new Error('File not found');
