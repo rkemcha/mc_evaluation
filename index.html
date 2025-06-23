@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microcredential Specification Evaluator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --light-text: #f8f9fa;
+            --border-color: #dee2e6;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 18px 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .panel-body {
+            padding: 25px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        /* Markdown Specification Panel */
+        #specification-panel .panel-body {
+            padding: 0;
+        }
+
+        #specification-content {
+            padding: 25px;
+            height: 600px;
+            overflow-y: auto;
+        }
+
+        #specification-content h1, 
+        #specification-content h2, 
+        #specification-content h3 {
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #specification-content h1 {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        #specification-content code {
+            background-color: var(--light-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        #specification-content pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        #specification-content blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #555;
+        }
+
+        #specification-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        #specification-content th, 
+        #specification-content td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        #specification-content th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        #specification-content tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        /* Form Panel */
+        #evaluation-form {
+            height: 600px;
+            background: #f0f5ff;
+        }
+
+        .form-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .form-placeholder i {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .form-placeholder h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .form-placeholder p {
+            margin-bottom: 25px;
+            max-width: 500px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .instructions {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+        }
+
+        .instructions h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .instructions ol {
+            padding-left: 25px;
+        }
+
+        .instructions li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .instructions .highlight {
+            background-color: rgba(67, 97, 238, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .panel-header {
+                padding: 15px 20px;
+                font-size: 1.1rem;
+            }
+            
+            .panel-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fa-sharp fa-solid fa-shield"></i> Microcredential Specification Evaluation</h1>
+            <p>Please review the course specification and provide your valuable feedback</p>
+        </header>
+
+        <div class="content-wrapper">
+            <!-- Specification Panel -->
+            <div class="panel" id="specification-panel">
+                <div class="panel-header">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Microcredential Specification</span>
+                </div>
+                <div class="panel-body">
+                    <div id="specification-content"></div>
+                        <div class="uuid-display">
+                            <i class="fas fa-fingerprint"></i> Document ID: <span id="uuid-display">Loading...</span>
+                        </div>
+                </div>
+            </div>
+
+            <!-- Evaluation Form Panel -->
+            <div class="panel">
+                  <iframe 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSfw0kFv73XFf-tH1hUBSK3g7XMAWr56kfuCh_4RH3ysY-tNEg/viewform?embedded=true" 
+                        width="100%"
+                        height="600"
+                        class="form-frame"
+                        frameborder="0" 
+                        marginheight="0" 
+                        margintop="-20"
+                        padding="0"
+                        marginwidth="0">
+                        Loading feedback form...
+                    </iframe>
+            </div>
+        </div>
+
+   <footer>
+    <p>© 2025 Telematics Engineering</p>
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>rkemcha@pa.uc3m.es</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-building"></i>
+            <span>Universidad Carlos III de Madrid</span>
+        </div>
+    </div>    </footer>
+    </div>
+
+    <script>
+        // Simple console logging
+        console.log('DOM loaded');
+        
+        // Element inspection
+        const myElement = document.getElementById('myElement');
+        console.log('Element:', myElement);
+        
+        // Event debugging
+        document.addEventListener('click', (e) => {
+          console.log('Click event:', e.target);
+        });
+        
+        // Error handling
+        try {
+          // Potentially problematic code
+        } catch (error) {
+          console.error('Error occurred:', error);
+        }
+      </script>
+         
+     <!-- Use specific version of Marked.js for synchronous parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@3.0.8/marked.min.js"></script>
+    <script>
+            // Get UUID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const uuid = urlParams.get('uuid') || 'default-spec';
+            
+            // Display UUID in header
+            document.getElementById('uuid-display').textContent = uuid;
+            
+            // Function to load markdown file
+            async function loadMarkdownFile() {
+                try {
+                    // Loading time
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    
+
+                    // Fetch the markdown file based on UUID
+                    if (!uuid) {
+                        throw new Error('UUID is required');
+                    }
+            
+                    const response = await fetch(`/specifications/${uuid}.md`);
+                    // Print response status for debugging
+                    console.log(`Fetching ${uuid}.md: ${response.status}`);
+
+
+                    if (!response.ok) throw new Error('File not found');
+                    const markdownContent = await response.text();
+
+                    // Render Markdown content
+                    document.getElementById('specification-content').innerHTML = 
+                                        marked.parse(markdownContent);
+                                
+                } catch (error) {
+                    document.getElementById('specification-content').innerHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger-color); margin-bottom: 20px;"></i>
+                            <h3>Document Not Found</h3>
+                            <p>Could not load specification for UUID: <strong>${uuid}</strong></p>
+                            <p>Error: ${error.message}</p>
+                        </div>
+                    `;
+                }
+            }
+                    
+        // Load markdown file when page loads
+        window.addEventListener('DOMContentLoaded', loadMarkdownFile);
+    </script>
+
+</body>
+</html>
