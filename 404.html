@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Micro‑credential specification evaluator & stylish 404 page." />
+    <title>Micro‑credential Specification Evaluator</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Markdown parser (future use) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        /* --------------------  Root  -------------------- */
+        :root {
+            /* Brand palette */
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+
+            /* Greys */
+            --bg-light: #f8f9fa;
+            --border: #e5e7eb;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+
+            /* Semantic */
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e03131;
+        }
+
+        /* --------------------  Global reset  -------------------- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Open Sans", system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container */
+        .container {
+            width: min(90%, 1200px);
+            margin: 0 auto;
+            padding: 2rem 0;
+            flex: 1 0 auto;
+        }
+
+        /* --------------------  Header  -------------------- */
+        header {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 0.75rem;
+            color: #fff;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeSlide 0.8s ease forwards;
+        }
+
+        header h1 {
+            font-family: "Roboto", sans-serif;
+            font-size: clamp(1.75rem, 5vw, 2.75rem);
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        header p {
+            margin-top: 0.75rem;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            opacity: 0.9;
+        }
+
+        .error-container {
+            margin: 3rem auto;
+            max-width: 800px;
+            padding: 3rem 2.5rem;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .error-code {
+            font-size: clamp(4.5rem, 22vw, 9rem);
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--danger) 0%, #d90429 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .error-container h2 {
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .error-container p {
+            color: var(--text-muted);
+            margin-bottom: 1.75rem;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        /* CTA */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: #fff;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 3rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.25s ease;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(67, 97, 238, 0.35);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer .contact-info {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* --------------------  Animations  -------------------- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(-6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --------------------  Media queries  -------------------- */
+        @media (max-width: 640px) {
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-shield-alt"></i> Microcredential Specification Evaluation</h1>
+        </header>
+
+        <section class="error-container" role="alert" aria-labelledby="errorHeading">
+            <div class="error-code" aria-hidden="true">404</div>
+            <h2 id="errorHeading">Oops! Page not found</h2>
+            <p>We can’t seem to find the page you’re looking for. It may have been moved or deleted.</p>
+
+            <a href="/" class="btn"><i class="fas fa-home"></i> Return to homepage</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Telematics Engineering</p>
+        <div class="contact-info">
+            <div class="contact-item"><i class="fas fa-envelope"></i> <span>rkemcha@pa.uc3m.es</span></div>
+            <div class="contact-item"><i class="fas fa-building"></i> <span>Universidad Carlos III de Madrid</span></div>
+        </div>
+    </footer>
+</body>
+</html>
