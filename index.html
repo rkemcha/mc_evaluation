@@ -105,15 +105,17 @@
             flex-grow: 1;
         }
 
-        /* Markdown Specification Panel */
         #specification-panel .panel-body {
-            padding: 0;
+            padding-right: 0;
         }
-
+        
+        /* Markdown Specification Panel */
         #specification-content {
-            padding: 25px;
             height: 600px;
             overflow-y: auto;
+            padding-left: 25px;
+            margin: 0 auto; /* Center content */
+
         }
 
         #specification-content h1, 
@@ -309,9 +311,7 @@
                 </div>
                 <div class="panel-body">
                     <div id="specification-content"></div>
-                        <div class="uuid-display">
-                            <i class="fas fa-fingerprint"></i> Document ID: <span id="uuid-display">Loading...</span>
-                        </div>
+
                 </div>
             </div>
 
@@ -373,10 +373,7 @@
             // Get UUID from URL parameter
             const urlParams = new URLSearchParams(window.location.search);
             const uuid = urlParams.get('uuid') || 'default-spec';
-            
-            // Display UUID in header
-            document.getElementById('uuid-display').textContent = uuid;
-            
+
             // Function to load markdown file
             async function loadMarkdownFile() {
                 try {
@@ -389,7 +386,7 @@
                         throw new Error('UUID is required');
                     }
 
-                    const response = await fetch(`./specifications/${uuid}.md`);
+                    const response = await fetch(`/specifications/${uuid}.md`);
                     // Print response status for debugging
                     console.log(`Fetching specifications/${uuid}.md: ${response.status}`);
 
