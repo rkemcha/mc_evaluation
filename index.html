@@ -386,7 +386,7 @@
                         throw new Error('UUID is required');
                     }
 
-                    const response = await fetch(`/specifications/${uuid}.md`);
+                    const response = await fetch(`./specifications/${uuid}.md`);
                     // Print response status for debugging
                     console.log(`Fetching specifications/${uuid}.md: ${response.status}`);
 
