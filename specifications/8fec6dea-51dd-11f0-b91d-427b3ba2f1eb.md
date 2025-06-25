@@ -9,16 +9,16 @@ Online proctoring service <Service Name> used for identity verification and exam
 ## Name of Microcredential:
 AI for Computer-Supported Collaborative Learning
 
-##Issuing University:
+## Issuing University:
 Universidad Carlos III de Madrid
 
-## Entity for Learning Experience:##
+## Entity for Learning Experience:
 Universidad Carlos III de Madrid (if different)
 
-##Start and End Date:
+## Start and End Date:
 <Start Date> - <End Date>
 
-##Language:## English
+## Language: English
 
 ## Admission Requirements:
 *   A Master's degree in a related field (e.g., Computer Science, Education, Learning Sciences).
