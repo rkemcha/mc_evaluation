@@ -16,7 +16,7 @@ Universidad Carlos III de Madrid
 Universidad Carlos III de Madrid (if different)
 
 ## Start and End Date:
-<Start Date> - <End Date>
+<Start_Date> - <End_Date>
 
 ## Language: English
 
