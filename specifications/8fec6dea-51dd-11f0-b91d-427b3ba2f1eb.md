@@ -1,26 +1,32 @@
 # Micro-credential: AI for Computer-Supported Collaborative Learning
 
-**Identification of Recipient:** Name of the individual receiving the certification.
+## Identification of Recipient:
+Name of the individual receiving the certification.
 
-**Supervision and Verification of Identity:** Online proctoring service <Service Name> used for identity verification and exam monitoring. Recorded sessions are stored securely for <Number> months.
+## Supervision and Verification of Identity:
+Online proctoring service <Service Name> used for identity verification and exam monitoring. Recorded sessions are stored securely for <Number> months.
 
-**Name of Microcredential:** AI for Computer-Supported Collaborative Learning
+## Name of Microcredential:
+AI for Computer-Supported Collaborative Learning
 
-**Issuing University:** Universidad Carlos III de Madrid
+##Issuing University:
+Universidad Carlos III de Madrid
 
-**Entity for Learning Experience:** Universidad Carlos III de Madrid (if different)
+## Entity for Learning Experience:##
+Universidad Carlos III de Madrid (if different)
 
-**Start and End Date:** 2025-09-15 - 2026-01-15
+##Start and End Date:
+<Start Date> - <End Date>
 
-**Language:** English
+##Language:## English
 
-**Admission Requirements:**
+## Admission Requirements:
 *   A Master's degree in a related field (e.g., Computer Science, Education, Learning Sciences).
 *   Strong programming skills (e.g., Python).
 *   Basic knowledge of machine learning concepts.
 *   Interest in collaborative learning and educational technologies.
 
-**Learning Objectives:**
+## Learning Objectives
 *   Understand the theoretical foundations of AI in computer-supported collaborative learning (CSCL).
     *   *Related ESCO Skills:* Instructional design models: http://data.europa.eu/esco/skill/e3145bd7-7f35-44ec-a5dc-4417c5c9ab9a&language=en
 *   Design and implement AI-powered tools to enhance collaborative learning activities using LangChain, LlamaIndex, and Low-Code/No-Code platforms.
@@ -31,7 +37,7 @@
     *   *Related ESCO Skills:* Follow ethical code of conduct: http://data.europa.eu/esco/skill/b2f925ed-3ebd-4f78-b98e-d5d4678e83b5&language=en, Bioethics: http://data.europa.eu/esco/skill/1d1b0108-3d56-45e2-bf0a-dca06a8ee5e3&language=en
 *   Critically analyze emerging research trends in AI and CSCL, including ethical implications.
 
-**Content Description:**
+## Content Description:
 
 The micro-credential consists of four modules, delivered through a hybrid approach combining online lectures, hands-on labs, and project-based assignments. The course promotes Active Learning and Project-Based Learning approaches.
 
@@ -85,9 +91,10 @@ The micro-credential consists of four modules, delivered through a hybrid approa
         *   *Topics Covered:* Fairness, transparency, accountability, bias detection, mitigation strategies.
         *   *Activities:* Group discussions, ethical audit exercises, case study analysis.
 
-**Mode of Instruction:** Hybrid (Online lectures, hands-on labs, and project-based assignments)
+## Mode of Instruction:
+Hybrid (Online lectures, hands-on labs, and project-based assignments)
 
-**Learning Outcomes:**
+## Learning Outcomes:
 Upon completion of this micro-credential, participants will be able to:
 *   Design and implement AI-driven tools for CSCL environments using LangChain, LlamaIndex, and Low-Code/No-Code platforms.
     *   *Related ESCO Skills:* Collaborate through digital technologies: http://data.europa.eu/esco/skill/2b34a99f-9813-4c91-9509-b6b9b8c3132e&language=en, Design web-based courses: http://data.europa.eu/esco/skill/3d957fb2-b8f4-4b4c-b955-23299c761ad5&language=en
@@ -97,13 +104,15 @@ Upon completion of this micro-credential, participants will be able to:
     *   *Related ESCO Skills:* Follow ethical code of conduct: http://data.europa.eu/esco/skill/b2f925ed-3ebd-4f78-b98e-d5d4678e83b5&language=en, Bioethics: http://data.europa.eu/esco/skill/1d1b0108-3d56-45e2-bf0a-dca06a8ee5e3&language=en
 *   Contribute to research in the field of AI and CSCL, particularly in ethical evaluation.
 
-**Level of Experience:** Expert (EQF Level 7)
+## Level of Experience:
+
+Expert (EQF Level 7)
 
 *   *Justification:* This micro-credential targets individuals with a Master's degree and prior experience in related fields. The learning outcomes require advanced knowledge and skills in AI, CSCL, and research methodologies, aligning with the EQF Level 7 descriptors for advanced problem-solving, critical analysis, and innovation.
 
-**Competency Frameworks:** ESCO, DIGCOMP
+## Competency Frameworks: ESCO, DIGCOMP
 
-**Learning Activities:**
+## Learning Activities:
 
 *   Lectures and seminars on AI and CSCL theories and techniques.
 *   Hands-on lab sessions using AI tools and platforms, including LangChain, LlamaIndex, and Generative AI models.
@@ -112,15 +121,15 @@ Upon completion of this micro-credential, participants will be able to:
 *   Group discussions and peer reviews, with an emphasis on ethical considerations.
 *   Individual research project focusing on ethical considerations or emerging trends in AI-CSCL.
 
-**Workload Theoretical:** 60 hours
+## Workload Theoretical: 60 hours
 
-**Workload Practical:** 60 hours
+## Workload Practical: 60 hours
 
-**ECTS Credits:** 4
+## ECTS Credits: 4
 
 *   *Justification:* The total workload of 120 hours translates to 4 ECTS credits, based on the standard conversion rate of 25-30 hours per ECTS credit in the European Higher Education Area.
 
-**Assessment Methods:**
+## Assessment Methods:
 
 *   **Project-based assignments (50%)**
     *   *Assessment Type:* Development and implementation of an AI-enhanced CSCL tool.
@@ -132,27 +141,27 @@ Upon completion of this micro-credential, participants will be able to:
     *   *Assessment Type:* Active participation in online discussions and constructive feedback on peer projects.
     *   *Criteria:* Frequency of participation, quality of contributions, and thoughtfulness of feedback.
 
-**List of Trainers:**
+## List of Trainers:
 *   <Trainer 1 Name>: <Qualifications and Experience>
 *   <Trainer 2 Name>: <Qualifications and Experience>
 
-**Stackability Options:**
+## Stackability Options:
 This micro-credential can be stacked with other micro-credentials in the field of Educational Technologies (e.g., "Learning Analytics," "Personalized Learning") to form a larger qualification, such as a Graduate Certificate or Diploma in Educational Technologies. Clear pathways for stacking will be developed and made available to students.
 
-**Outcome or Rights for Student:**
+## Outcome or Rights for Student:
 A micro-credential certificate acknowledging the successful completion of the program and the acquired skills and knowledge. The certificate will also include a description of the learning outcomes and the ECTS credits earned.
 
-**Quality Assurance:**
+## Quality Assurance:
 
 *   *Internal Quality Assurance:* The micro-credential program is subject to internal quality assurance reviews aligned with ANECA's AUDIT program and UC3M's internal guidelines. These reviews include annual curriculum review, assessment validation, student feedback analysis, and program evaluation.
 *   *External Quality Assurance:* The micro-credential program will be subject to periodic external evaluation by an independent accreditation agency.
 
-**Certifying University:**
+## Certifying University
 Universidad Carlos III de Madrid
 
-**Date of Issue:** 2025-06-25
+## Date of Issue: <Date of Issue>
 
-**GDPR Compliance:**
+## GDPR Compliance:
 
 *   Universidad Carlos III de Madrid is committed to protecting the privacy of its students. Personal data collected during the micro-credential program will be processed in accordance with the General Data Protection Regulation (GDPR).
 *   A transparent privacy policy is provided to students outlining data collection, storage, usage, and rights (access, rectification, erasure).
