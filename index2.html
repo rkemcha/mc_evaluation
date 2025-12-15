@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microcredential Specification Evaluator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen p-5">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center rounded-xl shadow-lg mb-8 p-6">
+            <h1 class="text-3xl md:text-4xl font-bold mb-3 flex items-center justify-center gap-3">
+                <i data-feather="shield"></i>
+                Microcredential Evaluation
+            </h1>
+            <p class="text-lg opacity-90 max-w-3xl mx-auto">
+                Please review the course specification and provide your valuable feedback
+            </p>
+        </header>
+        <!-- Main Content -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col mb-8">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <i data-feather="file-text"></i>
+                    <span class="text-lg font-semibold">Microcredential Specification</span>
+                </div>
+                <button id="downloadBtn" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-all border border-white/30 hover:border-white/50">
+                    <i data-feather="download"></i>
+                    Download
+                </button>
+            </div>
+            <div class="p-6 overflow-auto">
+                <div id="specification-content" class="prose max-w-none"></div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="text-center text-gray-600 mt-6 py-6">
+            <p class="mb-4">© 2025 Telematics Engineering</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
+                <div class="flex items-center justify-center gap-2">
+                    <i data-feather="mail"></i>
+                    <span>rkemcha@pa.uc3m.es</span>
+                </div>
+                <div class="flex items-center justify-center gap-2">
+                    <i data-feather="home"></i>
+                    <span>Universidad Carlos III de Madrid</span>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
+</body>
+</html>
