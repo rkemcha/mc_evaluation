@@ -424,7 +424,7 @@
         // Construct the new URL with the pre-filled entry
         // We keep ?embedded=true and add the entry parameter
         let currentSrc = iframe.src.split('?')[0]; // Get base URL
-        const newSrc = `${currentSrc}?embedded=true&${GOOGLE_FORM_FIELD_ID}=${uuid}`;
+        const newSrc = `${currentSrc}?embedded=true&usp=pp_url&${GOOGLE_FORM_FIELD_ID}=${uuid}`;
         iframe.src = newSrc;
     }
 
