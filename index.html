@@ -354,6 +354,7 @@
             <!-- Evaluation Form Panel -->
             <div class="panel">
                   <iframe 
+                        id="google-form-frame"
                         src="https://docs.google.com/forms/d/e/1FAIpQLSfw0kFv73XFf-tH1hUBSK3g7XMAWr56kfuCh_4RH3ysY-tNEg/viewform?embedded=true" 
                         width="100%"
                         height="600"
@@ -424,7 +425,7 @@
         // Construct the new URL with the pre-filled entry
         // We keep ?embedded=true and add the entry parameter
         let currentSrc = iframe.src.split('?')[0]; // Get base URL
-        const newSrc = `${currentSrc}?embedded=true&usp=pp_url&${GOOGLE_FORM_FIELD_ID}=${uuid}`;
+        const newSrc = `${currentSrc}?embedded=true&${GOOGLE_FORM_FIELD_ID}=${uuid}`;
         iframe.src = newSrc;
     }
 
