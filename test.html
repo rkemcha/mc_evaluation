@@ -326,6 +326,7 @@
     <div class="container">
         <header>
             <h1><i class="fa-solid fa-shield-alt"></i> Microcredential Evaluation</h1>
+            <p>Please review the course specification and provide your valuable feedback</p>
         </header>
 
         <div class="content-wrapper">
@@ -340,32 +341,11 @@
                         <i class="fas fa-download"></i>
                         Download
                     </button>
-                    
-                </div>
-                <div style="padding: 15px 25px; background: #f0f4f8; border-bottom: 1px solid var(--border-color); text-align: center; color: var(--secondary-color); font-weight: 600;">                    
-                    UUID: <span id="display-uuid" style="font-family: monospace; background: #fff; padding: 2px 8px; border-radius: 4px; border: 1px solid #ccc;">...</span>
                 </div>
                 <div class="panel-body">
                     <div id="specification-content"></div>
 
                 </div>
-            </div>
-
-            <!-- Evaluation Form Panel -->
-            <div class="panel">
-                  <iframe 
-                        id="google-form-frame"
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSfw0kFv73XFf-tH1hUBSK3g7XMAWr56kfuCh_4RH3ysY-tNEg/viewform?embedded=true" 
-                        width="100%"
-                        height="100%"
-                        class="form-frame"
-                        frameborder="0" 
-                        marginheight="0" 
-                        margintop="-20"
-                        padding="0"
-                        marginwidth="0">
-                        Loading feedback form...
-                    </iframe>
             </div>
         </div>
 
@@ -407,79 +387,70 @@
      <!-- Use specific version of Marked.js for synchronous parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked@3.0.8/marked.min.js"></script>
     <script>
-    // 1. Get UUID from URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const uuid = urlParams.get('uuid') || 'default-spec';
-    
-    // 2. Display UUID on the page
-    const displayElement = document.getElementById('display-uuid');
-    if (displayElement) {
-        displayElement.textContent = uuid;
-    }
-
-    // 3. Send UUID to Google Form
-    const GOOGLE_FORM_FIELD_ID = 'entry.189995033'; 
-    
-    const iframe = document.getElementById('google-form-frame');
-    if (iframe && uuid) {
-        // Construct the new URL with the pre-filled entry
-        // We keep ?embedded=true and add the entry parameter
-        let currentSrc = iframe.src.split('?')[0]; // Get base URL
-        const newSrc = `${currentSrc}?embedded=true&${GOOGLE_FORM_FIELD_ID}=${uuid}`;
-        iframe.src = newSrc;
-    }
-
-    // --- Rest of your existing logic ---
-
-    // Store markdown content for download
-    let markdownContent = '';
-
-    async function loadMarkdownFile() {
-        try {
-            await new Promise(resolve => setTimeout(resolve, 500));
+            // Get UUID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const uuid = urlParams.get('uuid') || 'default-spec';
             
-            if (!uuid) throw new Error('UUID is required');
+            // Store markdown content for download
+            let markdownContent = '';
 
-            const response = await fetch(`./specifications/${uuid}.md`);
-            console.log(`Fetching specifications/${uuid}.md: ${response.status}`);
+            // Function to load markdown file
+            async function loadMarkdownFile() {
+                try {
+                    // Loading time
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    
 
-            if (!response.ok) throw new Error('File not found');
-            markdownContent = await response.text();
+                    // Fetch the markdown file based on UUID
+                    if (!uuid) {
+                        throw new Error('UUID is required');
+                    }
 
-            document.getElementById('specification-content').innerHTML = 
-                                marked.parse(markdownContent);
-                        
-        } catch (error) {
-            document.getElementById('specification-content').innerHTML = `
-                <div class="error-message">
-                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger-color); margin-bottom: 20px;"></i>
-                    <h3>Document Not Found</h3>
-                    <p>Could not load specification for UUID: <strong>${uuid}</strong></p>
-                    <p>Error: ${error.message}</p>
-                </div>
-            `;
-        }
-    }
-    
-    function downloadMarkdown() {
-        if (!markdownContent) {
-            alert('No markdown content available to download');
-            return;
-        }
-        
-        const blob = new Blob([markdownContent], { type: 'text/markdown' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${uuid}.md`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
+                    const response = await fetch(`./specifications/${uuid}.md`);
+                    // Print response status for debugging
+                    console.log(`Fetching specifications/${uuid}.md: ${response.status}`);
+
+
+                    if (!response.ok) throw new Error('File not found');
+                    markdownContent = await response.text();
+
+                    // Render Markdown content
+                    document.getElementById('specification-content').innerHTML = 
+                                        marked.parse(markdownContent);
+                                
+                } catch (error) {
+                    document.getElementById('specification-content').innerHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger-color); margin-bottom: 20px;"></i>
+                            <h3>Document Not Found</h3>
+                            <p>Could not load specification for UUID: <strong>${uuid}</strong></p>
+                            <p>Error: ${error.message}</p>
+                        </div>
+                    `;
+                }
+            }
             
-    window.addEventListener('DOMContentLoaded', loadMarkdownFile);
-</script>
+            // Function to download markdown file
+            function downloadMarkdown() {
+                if (!markdownContent) {
+                    alert('No markdown content available to download');
+                    return;
+                }
+                
+                const blob = new Blob([markdownContent], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${uuid}.md`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+                    
+        // Load markdown file when page loads
+        window.addEventListener('DOMContentLoaded', loadMarkdownFile);
+    </script>
 
 </body>
 </html>
